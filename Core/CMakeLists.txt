@@ -2,8 +2,6 @@ cmake_minimum_required(VERSION 3.8)
 
 project("MovieKit")
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR})
-
 set ( SOURCE_FILES
     core.cpp    
 )
@@ -21,4 +19,6 @@ set_target_properties(MKCore
     OUTPUT_NAME MKCore
 )
 
-install(TARGETS MKCore LIBRARY DESTINATION /home/jonas/Projects/moviekit/bin/ PUBLIC_HEADER DESTINATION /home/jonas/Projects/moviekit/include/)
+if (LINUX)
+	install(TARGETS MKCore LIBRARY DESTINATION /home/jonas/MovieKit/bin/x11/ PUBLIC_HEADER DESTINATION /home/jonas/MovieKit/include/ ARCHIVE_DESTINATION /home/jonas/MovieKit/lib/)
+endif()

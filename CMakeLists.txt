@@ -7,9 +7,11 @@ add_subdirectory(Cosmos)
 
 add_executable(MovieKit main.cpp)
 
-set(REQUIRED_LIBRARIES /home/jonas/Projects/moviekit/bin/libMKCore.so /home/jonas/Projects/moviekit/bin/libMKCosmos.so)
+if (LINUX)
+	set(REQUIRED_LIBRARIES /home/jonas/MovieKit/bin/x11/libMKCore.so /home/jonas/MovieKit/bin/x11/libMKCosmos.so)
 
-target_link_libraries(MovieKit ${REQUIRED_LIBRARIES})
+	target_link_libraries(MovieKit ${REQUIRED_LIBRARIES})
+endif()
 
 set_target_properties(
     MovieKit
@@ -18,4 +20,6 @@ set_target_properties(
     OUTPUT_NAME MovieKit
 )
 
-install(TARGETS MovieKit DESTINATION /home/jonas/Projects/moviekit/bin/)
+if (LINUX)
+	install(TARGETS MovieKit DESTINATION /home/jonas/MovieKit/bin/x11/)
+endif()
